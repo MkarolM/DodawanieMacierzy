@@ -40,6 +40,8 @@ public:
         }
     }
     friend Macierz* Dodaj(Macierz& a, Macierz& b);
+    friend Macierz* Odejmij(Macierz& a, Macierz& b);
+
 };
 
 Macierz* Dodaj(Macierz& a, Macierz& b)
@@ -56,6 +58,19 @@ Macierz* Dodaj(Macierz& a, Macierz& b)
 
     return wsk;
 }
+Macierz* Odejmij(Macierz& a, Macierz& b)
+{
+    Macierz* wsk;
+    wsk = new Macierz;
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < r; j++)
+        {
+            wsk->tab[i][j] = a.tab[i][j] - b.tab[i][j];
+        }
+    }
+    return wsk;
+}
 
 int main()
 {
@@ -66,6 +81,8 @@ int main()
     m2.wczytajDane();
     m2.wypisz();
     w = Dodaj(m1, m2);
+    w->wypisz();
+    w = Odejmij(*w, m2);
     w->wypisz();
     delete w;
 }
